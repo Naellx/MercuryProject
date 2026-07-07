@@ -7,7 +7,7 @@ print("🌐 Website : https://mercuryproject.site")
 print("💬 Discord : https://discord.gg/YOURINVITE")
 print("══════════════════════════════════════════════")
 
-local URL = "https://raw.githubusercontent.com/USERNAME/MercuryProject/main/Main.lua"
+local URL = "https://raw.githubusercontent.com/Naellx/MercuryProject/refs/heads/main/Main.lua"
 
 local Success, Response = pcall(function()
 return game:HttpGet(URL)
