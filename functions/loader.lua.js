@@ -11,5 +11,5 @@ export async function onRequest(context) {
     return Response.redirect("https://mercuryproject.site", 302);
   }
 
-  return fetch("https://raw.githubusercontent.com/Naellx/MercuryProject/main/loader.lua");
+  return fetch("https://raw.githubusercontent.com/Naellx/MercuryProject/main/loader-source.lua");
 }
