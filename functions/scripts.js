@@ -1,0 +1,43 @@
+// Static list - bisa Anda ganti ke D1/KV lookup nanti
+// jika ingin mengedit daftar game tanpa re-deploy.
+const GAMES = [
+  { game_name: "1 Dash for brainrots",          status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Become A Brainrot",              status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Driving Empire",                 status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Gotta Go Toilet",                status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Jetpack for brainrot",           status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "cross rivers for brainrots",     status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "plane for brainrot",             status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "+1 Hack Per Click",              status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "+1 Speed Slime Keyboard Escape", status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Murder-Mystery-2",               status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Demonology",                     status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Evomon",                         status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Slime Seas RPG",                 status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "+1 Strength To Escape",          status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Be-a-Slime-for-Lucky-Block",     status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "+1 Car Evolution",               status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "1MinePerClick",                  status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Speedsters Infinite",            status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "+1 Speed Moonwalk Escape",       status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "PaintMyKeyboard",                status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Drain The Lake",                 status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "climb-and-drop-a-lucky-block",   status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Hack-A-Business",                status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Anime Card Farm",                status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "BE-A-FISH-BAIT",                 status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Pull A Lucky Fish",             status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "RNG Heroes",                     status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Dino Hunters",                   status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Get Fat to Break Tape",          status: "Working", thumbnail_url: "assets/mercury-mark.png" },
+  { game_name: "Loot Up",                        status: "Working", thumbnail_url: "assets/mercury-mark.png" }
+];
+
+export async function onRequestGet() {
+  return new Response(JSON.stringify(GAMES), {
+    headers: { 
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*" // Memungkinkan akses CORS jika dipanggil dari website/UI external
+    }
+  });
+    }
