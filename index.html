@@ -1,53 +1,389 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Access Denied</title>
-<style>
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f5f5f5;
-    font-family: Arial, sans-serif;
-    color: #333;
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mercury Hub — Roblox Script Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+:root, [data-theme=dark] {
+  --paper:#0c0c0e;--paper-2:#141416;
+  --card:rgba(190,191,196,0.045);--card-hi:rgba(190,191,196,0.075);
+  --border:rgba(190,191,196,0.12);--border-strong:rgba(190,191,196,0.24);
+  --ink:#ededee;--ink-soft:#b0b1b5;--muted:#76777c;
+  --accent:#cfcfd2;--accent-2:#efeff0;--accent-soft:rgba(205,206,210,0.1);
+  --seal-frame:rgba(190,191,196,0.22);--btn-text:#0c0c0e;--grid-line:rgba(190,191,196,0.1);
+  --code-bg:rgba(8,8,10,0.72);--code-text:#d4d5d9;--code-label:rgba(255,255,255,0.45);
+  --overlay:rgba(6,6,8,0.72);
 }
-
-.box {
-    text-align: center;
-    background: white;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px #0002;
+[data-theme=light] {
+  --paper:#e8e4da;--paper-2:#efebe2;
+  --card:#f6f4ee;--card-hi:#fbfaf6;
+  --border:rgba(36,50,80,0.13);--border-strong:rgba(36,50,80,0.26);
+  --ink:#1a2238;--ink-soft:#3c4660;--muted:#6b7488;
+  --accent:#1b1e26;--accent-2:#3a3f4d;--accent-soft:rgba(27,30,38,0.10);
+  --seal-frame:rgba(36,50,80,0.20);--btn-text:#f6f4ee;--grid-line:rgba(36,50,80,0.05);
+  --code-bg:#efeadf;--code-text:#3c4660;--code-label:#6b7488;
+  --overlay:rgba(26,34,56,0.45);
 }
-
-h1 {
-    font-size: 50px;
-    margin: 0;
-    color: #d93025;
+@keyframes mercuryTwinkle{0%,100%{opacity:.25;transform:scale(.85);}50%{opacity:.9;transform:scale(1.1);}}
+@keyframes modalIn{from{opacity:0;transform:translateY(14px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes overlayIn{from{opacity:0;}to{opacity:1;}}
+@keyframes blink{0%,49%{opacity:1;}50%,100%{opacity:0;}}
+@keyframes spin{to{transform:rotate(360deg);}}
+a { color: inherit; }
+.hl:hover { transform: translateY(-2px); }
+article.hl,a.hl { transition: transform .2s ease; }
+@media (max-width:760px){#hh-root section,#hh-root header{padding-left:18px !important;padding-right:18px !important;}.hh-nav{display:none !important;}.hh-dashbtn{display:none !important;}.hh-burger{display:flex !important;}.hh-hero{font-size:34px !important;}.hh-grid3{grid-template-columns:1fr !important;}.hh-banner{height:200px !important;}}</style>
+<script>
+// ── Theme ────────────────────────────────────────────────────────────────────
+var _hhTheme='dark';
+try{var _s=localStorage.getItem('mercuryhub_theme');if(_s==='light'||_s==='dark')_hhTheme=_s;}catch(e){}
+function _hhNav(open){var m=document.getElementById('hhMenu');if(m)m.style.display=open?'flex':'none';}
+function _hhApply(){var r=document.getElementById('hh-root');if(r)r.setAttribute('data-theme',_hhTheme);}
+function _hhToggle(){_hhTheme=_hhTheme==='dark'?'light':'dark';try{localStorage.setItem('mercuryhub_theme',_hhTheme);}catch(e){}_hhApply();_hhUpdateBtn();_hhRenderCode();}
+function _hhUpdateBtn(){
+  var b=document.getElementById('themeBtn');if(!b)return;
+  var s=b.children[0],m=b.children[1];
+  var base='width:26px;height:26px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;transition:all .3s ease;';
+  var on='background:var(--accent);color:var(--btn-text);',off='background:transparent;color:var(--muted);';
+  s.style.cssText=base+(_hhTheme==='light'?on:off);m.style.cssText=base+(_hhTheme==='dark'?on:off);
 }
-
-p {
-    font-size: 18px;
-}
-
-.code {
-    color: #777;
-    margin-top: 15px;
-}
-</style>
+_hhApply();
+</script>
 </head>
-
 <body>
-<div class="box">
-    <h1>403</h1>
-    <h2>Access Denied</h2>
-    <p>You don't have permission to access this website.</p>
-    <div class="code">
-        Error ID: ACCESS_DENIED
+<div id="hh-root" style="min-height:100vh;background:radial-gradient(1100px 520px at 78% -8%,var(--accent-soft) 0%,transparent 60%),linear-gradient(180deg,var(--paper-2) 0%,var(--paper) 260px,var(--paper) 100%);color:var(--ink);font-family:'Zen Kaku Gothic New',system-ui,sans-serif;transition:background .5s ease,color .35s ease;overflow:hidden;position:relative;">
+  <!-- Grid -->
+  <div style="position:absolute;inset:0;pointer-events:none;opacity:.6;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 720px);mask-image:linear-gradient(180deg,#000 0%,transparent 720px);"></div>
+
+  <!-- Nav -->
+  <header style="position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;max-width:1240px;margin:0 auto;padding:20px 32px;">
+    <a href="index.html" style="text-decoration:none;display:flex;align-items:center;gap:13px;">
+      <div style="width:46px;height:46px;border-radius:13px;overflow:hidden;border:1px solid var(--seal-frame);box-shadow:0 4px 18px rgba(0,0,0,.25);flex:none;background:#f0eee7;"><img src="assets/mercury-mark.png" alt="Mercury Hub" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+      <div style="display:flex;flex-direction:column;line-height:1;">
+        <span style="font-family:'Shippori Mincho',serif;font-weight:700;font-size:19px;letter-spacing:.14em;color:var(--ink);">MERCURY HUB</span>
+        <span style="font-size:10.5px;letter-spacing:.32em;color:var(--muted);margin-top:5px;">星 · BY Naellx</span>
+      </div>
+    </a>
+    <nav class="hh-nav" style="display:flex;align-items:center;gap:6px;position:absolute;left:50%;transform:translateX(-50%);">
+      <a href="index.html" style="text-decoration:none;color:var(--accent);font-size:13px;font-weight:700;letter-spacing:.16em;padding:9px 16px;border-radius:9px;background:var(--accent-soft);">HOME</a>
+      <a href="get/index.html" style="text-decoration:none;color:var(--ink);font-size:13px;font-weight:500;letter-spacing:.16em;padding:9px 16px;border-radius:9px;">GET KEY</a>
+      <a href="premium/index.html" style="text-decoration:none;color:var(--ink);font-size:13px;font-weight:500;letter-spacing:.16em;padding:9px 16px;border-radius:9px;">PREMIUM</a>
+      <a href="https://discord.gg/5hEuYKEpA" target="_blank" rel="noopener" style="text-decoration:none;color:var(--ink);font-size:13px;font-weight:500;letter-spacing:.16em;padding:9px 16px;border-radius:9px;">DISCORD</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button id="themeBtn" aria-label="Toggle theme" onclick="_hhToggle()" style="cursor:pointer;display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:999px;padding:7px;color:var(--ink-soft);transition:all .3s ease;">
+        <span>☀</span><span>☾</span>
+      </button>
+      <a href="dashboard/index.html" class="hh-dashbtn" style="text-decoration:none;font-size:12.5px;font-weight:700;letter-spacing:.14em;color:var(--btn-text);background:linear-gradient(135deg,var(--accent-2),var(--accent));padding:11px 20px;border-radius:11px;box-shadow:0 6px 20px var(--accent-soft);">DASHBOARD</a>
+      <button onclick="_hhNav(true)" aria-label="Menu" class="hh-burger" style="cursor:pointer;display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:0 12px;background:var(--card);border:1px solid var(--border);border-radius:12px;"><span style="display:block;height:2px;border-radius:2px;background:var(--ink);"></span><span style="display:block;height:2px;border-radius:2px;background:var(--ink);"></span><span style="display:block;height:2px;border-radius:2px;background:var(--ink);"></span></button>
     </div>
+  </header>
+  <div id="hhMenu" onclick="_hhNav(false)" style="display:none;position:fixed;inset:0;z-index:80;background:var(--overlay);backdrop-filter:blur(4px);justify-content:flex-end;">
+    <div onclick="event.stopPropagation()" style="width:300px;max-width:84vw;height:100%;background:var(--paper-2);border-left:1px solid var(--border);box-shadow:-20px 0 60px rgba(0,0,0,.4);display:flex;flex-direction:column;padding:20px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;">
+        <span style="font-family:'Shippori Mincho',serif;font-weight:700;font-size:15px;letter-spacing:.1em;">MENU</span>
+        <button onclick="_hhNav(false)" aria-label="Close" style="cursor:pointer;width:34px;height:34px;border-radius:9px;background:var(--card);border:1px solid var(--border);color:var(--ink-soft);font-size:15px;display:flex;align-items:center;justify-content:center;">✕</button>
+      </div>
+      <a href="index.html" style="text-decoration:none;display:flex;align-items:center;gap:13px;color:var(--accent);font-size:14px;font-weight:700;letter-spacing:.06em;padding:14px;border-radius:12px;background:var(--accent-soft);margin-bottom:4px;">Home</a>
+      <a href="get/index.html" style="text-decoration:none;display:flex;align-items:center;gap:13px;color:var(--ink);font-size:14px;font-weight:500;letter-spacing:.06em;padding:14px;border-radius:12px;margin-bottom:4px;">Get Key</a>
+      <a href="premium/index.html" style="text-decoration:none;display:flex;align-items:center;gap:13px;color:var(--ink);font-size:14px;font-weight:500;letter-spacing:.06em;padding:14px;border-radius:12px;margin-bottom:4px;">Premium</a>
+      <a href="https://discord.gg/5hEuYKEpA" target="_blank" rel="noopener" style="text-decoration:none;display:flex;align-items:center;gap:13px;color:var(--ink);font-size:14px;font-weight:500;letter-spacing:.06em;padding:14px;border-radius:12px;">Discord</a>
+      <div style="flex:1;"></div>
+      <a href="dashboard/index.html" style="text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;color:var(--btn-text);font-size:13.5px;font-weight:700;letter-spacing:.1em;background:linear-gradient(135deg,var(--accent-2),var(--accent));padding:15px;border-radius:13px;box-shadow:0 10px 26px var(--accent-soft);">Open Dashboard</a>
+    </div>
+  </div>
+
+  <!-- Banner -->
+  <section style="position:relative;z-index:2;max-width:1240px;margin:8px auto 0;padding:0 32px;">
+    <div class="hh-banner" style="position:relative;height:330px;border-radius:22px;overflow:hidden;border:1px solid var(--border);box-shadow:0 24px 60px rgba(0,0,0,.30);">
+      <img src="assets/mercury-banner.png" alt="Mercury Hub" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,9,15,.25) 0%,rgba(7,9,15,.05) 30%,rgba(7,9,15,.50) 72%,var(--paper) 100%);"></div>
+      <div style="position:absolute;left:0;right:0;bottom:22px;display:flex;justify-content:center;">
+        <span style="font-size:11px;letter-spacing:.4em;color:var(--ink-soft);background:var(--card-hi);border:1px solid var(--border);padding:8px 18px;border-radius:999px;backdrop-filter:blur(6px);">PREMIUM ROBLOX SCRIPTS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Loadstring -->
+  <section style="position:relative;z-index:3;max-width:760px;margin:0 auto;padding:54px 32px 10px;text-align:center;">
+    <div style="position:absolute;left:6%;top:48px;color:var(--accent);font-size:16px;animation:mercuryTwinkle 3.4s ease-in-out infinite;">✦</div>
+    <div style="position:absolute;right:8%;top:80px;color:var(--accent);font-size:11px;animation:mercuryTwinkle 2.6s ease-in-out infinite .8s;">✦</div>
+    <div style="font-size:12px;letter-spacing:.34em;color:var(--muted);margin-bottom:16px;">RUN IN YOUR EXECUTOR</div>
+    <h1 class="hh-hero" style="font-family:'Shippori Mincho',serif;font-weight:700;font-size:46px;line-height:1.08;margin:0 0 10px;">Get Your <span style="background:linear-gradient(135deg,var(--accent-2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;">Loadstring</span></h1>
+    <p style="max-width:480px;margin:0 auto 28px;color:var(--ink-soft);font-size:15px;line-height:1.6;">Copy the loader below, paste it into your executor, then enter your key in the GUI.</p>
+    <div style="position:relative;text-align:left;background:var(--code-bg);border:1px solid var(--border-strong);border-radius:16px;padding:20px;box-shadow:0 18px 44px rgba(0,0,0,.30);overflow:hidden;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="width:10px;height:10px;border-radius:999px;background:#e0a32e;display:inline-block;"></span>
+          <span style="width:10px;height:10px;border-radius:999px;background:#15a07f;display:inline-block;"></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--code-label);margin-left:6px;">loader.lua</span>
+        </div>
+        <button id="copyBtn" style="cursor:pointer;font-size:11.5px;font-weight:700;letter-spacing:.12em;color:var(--btn-text);background:linear-gradient(135deg,var(--accent-2),var(--accent));border:none;padding:8px 16px;border-radius:9px;transition:transform .15s ease;">COPY</button>
+      </div>
+      <code id="codeEl" style="display:block;min-height:24px;font-family:'JetBrains Mono',monospace;font-size:13.5px;line-height:1.7;color:var(--code-text);word-break:break-all;white-space:pre-wrap;">
+        <span style="color:var(--muted);font-size:12px;">loading…</span>
+      </code>
+    </div>
+  </section>
+
+  <!-- Games -->
+  <section style="position:relative;z-index:3;max-width:1240px;margin:0 auto;padding:56px 32px 16px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-bottom:24px;">
+      <div>
+        <div style="font-size:11px;letter-spacing:.34em;color:var(--muted);margin-bottom:8px;">SCRIPT LIBRARY</div>
+        <h2 style="font-family:'Shippori Mincho',serif;font-weight:700;font-size:32px;margin:0;">Supported Games</h2>
+      </div>
+      <div id="tabs" style="display:flex;align-items:center;gap:8px;"></div>
+    </div>
+    <div id="gameGrid" class="hh-grid3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+      <div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--muted);font-size:14px;">
+        <div style="width:28px;height:28px;border:2px solid var(--border-strong);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 14px;"></div>
+        Loading games…
+      </div>
+    </div>
+  </section>
+
+  <!-- Changelog Modal -->
+  <div id="modal" style="display:none;position:fixed;inset:0;z-index:50;background:var(--overlay);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:24px;animation:overlayIn .25s ease;">
+    <div id="modalBox" style="width:100%;max-width:520px;max-height:82vh;overflow:auto;background:var(--paper-2);border:1px solid var(--border-strong);border-radius:22px;box-shadow:0 40px 90px rgba(0,0,0,.5);animation:modalIn .3s cubic-bezier(.2,.8,.2,1);">
+      <div style="display:flex;align-items:center;gap:14px;padding:24px 24px 18px;border-bottom:1px solid var(--border);">
+        <div id="mLetter" style="width:48px;height:48px;border-radius:13px;flex:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent-soft),var(--card-hi));border:1px solid var(--border-strong);font-family:'Shippori Mincho',serif;font-size:22px;font-weight:700;color:var(--accent);overflow:hidden;"></div>
+        <div style="flex:1;">
+          <div id="mName" style="font-family:'Shippori Mincho',serif;font-weight:700;font-size:20px;color:var(--ink);"></div>
+          <div style="font-size:11.5px;letter-spacing:.18em;color:var(--muted);margin-top:4px;">CHANGELOG</div>
+        </div>
+        <button onclick="_hhCloseModal()" aria-label="Close" style="cursor:pointer;width:34px;height:34px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;background:var(--card);border:1px solid var(--border);color:var(--ink-soft);font-size:16px;">✕</button>
+      </div>
+      <div id="mBody" style="padding:8px 24px 24px;"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="position:relative;z-index:3;max-width:1240px;margin:0 auto;padding:44px 32px 48px;text-align:center;">
+    <div style="height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin-bottom:26px;"></div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;">
+      <div style="width:26px;height:26px;border-radius:8px;overflow:hidden;border:1px solid var(--seal-frame);background:#f0eee7;"><img src="assets/mercury-mark.png" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
+      <span style="font-family:'Shippori Mincho',serif;font-weight:700;letter-spacing:.12em;font-size:14px;">MERCURY HUB</span>
+    </div>
+    <p style="color:var(--muted);font-size:12.5px;margin:0;">Use responsibly. Scripts are provided as-is for supported experiences.</p>
+  </footer>
 </div>
+
+<script>
+// ── Typewriter ───────────────────────────────────────────────────────────────
+var _hhLS = '';
+var _hhTyped = 0, _hhTT = null;
+var _hhPalD = {kw:'#d2d6df',id:'#aeb6cc',fn:'#62b89a',str:'#d99a5b',pun:'#cdd6ea'};
+var _hhPalL = {kw:'#1b1e26',id:'#46505f',fn:'#1f7a5e',str:'#a4602a',pun:'#3c4660'};
+
+function _hhTokenize(s) {
+  // Simple Lua colorizer for the loadstring pattern
+  var out = [];
+  var kws = ['loadstring','game','HttpGet'];
+  var rem = s;
+  while (rem.length) {
+    var matched = false;
+    if (rem[0] === '"') {
+      var end = rem.indexOf('"', 1);
+      if (end === -1) end = rem.length - 1;
+      out.push({t: rem.slice(0, end+1), r: 'str'});
+      rem = rem.slice(end+1); matched = true;
+    }
+    if (!matched) {
+      for (var i=0;i<kws.length;i++) {
+        if (rem.startsWith(kws[i])) {
+          out.push({t:kws[i], r: kws[i]==='HttpGet'?'fn':(kws[i]==='game'?'id':'kw')});
+          rem = rem.slice(kws[i].length); matched = true; break;
+        }
+      }
+    }
+    if (!matched) { out.push({t:rem[0], r:'pun'}); rem=rem.slice(1); }
+  }
+  return out;
+}
+
+function _hhRenderCode() {
+  var el = document.getElementById('codeEl'); if (!el || !_hhLS) return;
+  var isDark = document.getElementById('hh-root').getAttribute('data-theme') !== 'light';
+  var pal = isDark ? _hhPalD : _hhPalL;
+  var tokens = _hhTokenize(_hhLS);
+  var full = _hhLS.length;
+  var rem = _hhTyped;
+  var html = '';
+  tokens.forEach(function(tok) {
+    if (rem <= 0) return;
+    var slice = tok.t.slice(0, rem);
+    html += '<span style="color:' + pal[tok.r] + '">' + slice + '</span>';
+    rem -= tok.t.length;
+  });
+  var typing = _hhTyped < full;
+  html += '<span style="color:' + pal.pun + ';' + (typing ? '' : 'animation:blink 1.05s step-end infinite') + '">▋</span>';
+  el.innerHTML = html;
+}
+
+function _hhStartType() {
+  clearInterval(_hhTT);
+  _hhTyped = 0;
+  _hhTT = setInterval(function() {
+    if (_hhTyped >= _hhLS.length) { clearInterval(_hhTT); _hhRenderCode(); return; }
+    _hhTyped++; _hhRenderCode();
+  }, 42);
+}
+
+// ── Games grid ───────────────────────────────────────────────────────────────
+var _hhGames = [];
+var _hhTab = 'All';
+
+function _hhRenderTabs() {
+  var el = document.getElementById('tabs'); if (!el) return;
+  var tabs = ['All','Working','Updating','Patched'];
+  el.innerHTML = tabs.map(function(t) {
+    var a = t === _hhTab;
+    return '<button data-tab="' + t + '" style="cursor:pointer;font-size:12.5px;font-weight:700;letter-spacing:.08em;padding:9px 16px;border-radius:10px;transition:all .2s ease;border:1px solid ' + (a?'transparent':'var(--border)') + ';' + (a?'background:var(--accent);color:var(--btn-text);':'background:var(--card);color:var(--ink-soft);') + '">' + t + '</button>';
+  }).join('');
+  Array.prototype.forEach.call(el.querySelectorAll('button[data-tab]'), function(btn) {
+    btn.addEventListener('click', function() { _hhSetTab(btn.getAttribute('data-tab')); });
+  });
+}
+
+function _hhSetTab(t) { _hhTab = t; _hhRenderTabs(); _hhRenderGrid(); }
+
+function _hhRenderGrid() {
+  var el = document.getElementById('gameGrid'); if (!el) return;
+  var sc = {Working:'#15a07f',Updating:'#e0a32e',Patched:'#c2566a'};
+  var filtered = _hhGames.filter(function(g) { return _hhTab === 'All' || g.status === _hhTab; });
+  if (!filtered.length) {
+    el.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--muted);font-size:14px;">No games in this category yet.</div>';
+    return;
+  }
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  el.innerHTML = filtered.map(function(g, idx) {
+    var c = sc[g.status] || 'var(--muted)';
+    var letter = (g.game_name || '?').charAt(0).toUpperCase();
+    var thumb = g.thumbnail_url
+      ? '<img src="https://mercuryproject.site/'&#32;+&#32;esc(g.thumbnail_url)&#32;+&#32;'" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">'
+      : '<span style="font-family:Shippori Mincho,serif;font-size:24px;font-weight:700;color:var(--accent);">' + esc(letter) + '</span>';
+    return '<article class="hl" style="background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;display:flex;flex-direction:column;box-shadow:0 12px 30px rgba(0,0,0,.14);">'
+      + '<div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">'
+        + '<div style="width:52px;height:52px;border-radius:14px;flex:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent-soft),var(--card-hi));border:1px solid var(--border-strong);overflow:hidden;">' + thumb + '</div>'
+        + '<div style="min-width:0;"><div style="font-weight:700;font-size:16.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + esc(g.game_name) + '</div>'
+        + '<div style="margin-top:7px;"><span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.06em;padding:4px 10px;border-radius:999px;color:' + c + ';background:' + c + '1f;border:1px solid ' + c + '40;">' + esc(g.status || 'Working') + '</span></div></div>'
+      + '</div>'
+      + '<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;">'
+        + '<span style="font-family:JetBrains Mono,monospace;font-size:11.5px;color:var(--muted);">' + esc(g.version || '') + '</span>'
+        + '<button data-cl="' + idx + '" style="cursor:pointer;display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--ink);background:var(--card-hi);border:1px solid var(--border-strong);padding:9px 14px;border-radius:10px;transition:background .2s ease;"><span style="color:var(--accent);font-size:13px;">◷</span> Changelog</button>'
+      + '</div>'
+    + '</article>';
+  }).join('');
+  Array.prototype.forEach.call(el.querySelectorAll('button[data-cl]'), function(btn) {
+    var g = filtered[Number(btn.getAttribute('data-cl'))];
+    btn.addEventListener('click', function() { _hhOpenChangelog(g.game_name); });
+  });
+}
+
+// ── Changelog modal ──────────────────────────────────────────────────────────
+function _hhOpenChangelog(name) {
+  var g = _hhGames.filter(function(x){ return x.game_name === name; })[0];
+  var mL = document.getElementById('mLetter');
+  if (g && g.thumbnail_url) {
+    mL.innerHTML = '<img src="https://raw.githubusercontent.com/Naellx/Web/refs/heads/main/grok_1784401627930.jpg'" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:13px;">';
+  } else {
+    mL.textContent = name.charAt(0).toUpperCase();
+  }
+  document.getElementById('mName').textContent = name;
+  document.getElementById('mBody').innerHTML = '<div style="padding:32px;text-align:center;color:var(--muted);"><div style="width:24px;height:24px;border:2px solid var(--border-strong);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 12px;"></div>Loading…</div>';
+  document.getElementById('modal').style.display = 'flex';
+  document.getElementById('modal').onclick = function(e) { if(e.target===document.getElementById('modal')) _hhCloseModal(); };
+
+  fetch('/api/changelog/public?game_name=' + encodeURIComponent(name) + '&limit=10')
+    .then(function(r){return r.json();})
+    .then(function(data){
+      if (!data.ok || !data.changelogs || !data.changelogs.length) {
+        document.getElementById('mBody').innerHTML = '<p style="padding:24px;color:var(--muted);font-size:14px;text-align:center;">No changelogs yet.</p>';
+        return;
+      }
+      var tc = {added:'#15a07f',removed:'#c2566a',improved:'#8295cc'};
+      document.getElementById('mBody').innerHTML = data.changelogs.map(function(c) {
+        var date = new Date(c.posted_at * 1000).toLocaleDateString('en-GB', {day:'2-digit',month:'short',year:'numeric'});
+        var sections = '';
+        if (c.added && c.added.length) {
+          sections += '<div style="margin-bottom:10px;"><div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:' + tc.added + ';margin-bottom:6px;">ADDED</div>'
+            + c.added.map(function(n){return '<div style="display:flex;align-items:flex-start;gap:9px;font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin-bottom:4px;"><span style="color:' + tc.added + ';margin-top:1px;">+</span><span>' + n + '</span></div>';}).join('') + '</div>';
+        }
+        if (c.improved && c.improved.length) {
+          sections += '<div style="margin-bottom:10px;"><div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:' + tc.improved + ';margin-bottom:6px;">IMPROVED</div>'
+            + c.improved.map(function(n){return '<div style="display:flex;align-items:flex-start;gap:9px;font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin-bottom:4px;"><span style="color:' + tc.improved + ';margin-top:1px;">~</span><span>' + n + '</span></div>';}).join('') + '</div>';
+        }
+        if (c.removed && c.removed.length) {
+          sections += '<div style="margin-bottom:10px;"><div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:' + tc.removed + ';margin-bottom:6px;">REMOVED</div>'
+            + c.removed.map(function(n){return '<div style="display:flex;align-items:flex-start;gap:9px;font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin-bottom:4px;"><span style="color:' + tc.removed + ';margin-top:1px;">-</span><span>' + n + '</span></div>';}).join('') + '</div>';
+        }
+        return '<div style="padding:18px 0;border-bottom:1px solid var(--border);">'
+          + '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">'
+            + '<span style="font-family:JetBrains Mono,monospace;font-weight:600;font-size:14px;color:var(--ink);">' + c.version + '</span>'
+            + '<span style="font-size:11px;color:var(--muted);">' + date + '</span>'
+          + '</div>'
+          + sections
+        + '</div>';
+      }).join('');
+    })
+    .catch(function(){
+      document.getElementById('mBody').innerHTML = '<p style="padding:24px;color:var(--muted);font-size:14px;text-align:center;">Failed to load changelog.</p>';
+    });
+}
+
+function _hhCloseModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+// ── Init (script is at bottom of body — DOM already parsed, no DOMContentLoaded needed) ────────
+_hhApply(); _hhUpdateBtn();
+document.getElementById('themeBtn').addEventListener('click', _hhToggle);
+
+// Fetch loadstring from backend
+fetch('/api/loader/loadstring')
+  .then(function(r){return r.json();})
+  .then(function(d){
+    _hhLS = d.loadstring || 'loadstring(game:HttpGet("https://mercuryproject.site/loader.lua"))()';
+    setTimeout(_hhStartType, 480);
+  })
+  .catch(function(){
+    _hhLS = 'loadstring(game:HttpGet("https://mercuryproject.site/loader.lua"))()';
+    setTimeout(_hhStartType, 480);
+  });
+
+// Copy button
+document.getElementById('copyBtn').addEventListener('click', function() {
+  var text = _hhLS || 'loadstring(game:HttpGet("https://mercuryproject.site/loader.lua"))()';
+  try {
+    navigator.clipboard.writeText(text).then(function() {
+      var b = document.getElementById('copyBtn');
+      b.textContent = 'COPIED ✓'; setTimeout(function(){b.textContent='COPY';}, 1600);
+    });
+  } catch(e) {
+    var b = document.getElementById('copyBtn');
+    b.textContent = 'COPIED ✓'; setTimeout(function(){b.textContent='COPY';}, 1600);
+  }
+});
+
+// Fetch games from backend
+_hhRenderTabs();
+fetch('/api/scripts')
+  .then(function(r){return r.json();})
+  .then(function(data){
+    _hhGames = Array.isArray(data) ? data : [];
+    _hhRenderGrid();
+  })
+  .catch(function(){
+    _hhGames = [];
+    document.getElementById('gameGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--muted);font-size:14px;">Failed to load games. Refresh the page.</div>';
+  });
+</script>
 </body>
 </html>
-loadstring(game:HttpGet("https://raw.githubusercontent.com/IcantAffordSynapse/BrainrotPolice/refs/heads/main/src/init.lua"))()
